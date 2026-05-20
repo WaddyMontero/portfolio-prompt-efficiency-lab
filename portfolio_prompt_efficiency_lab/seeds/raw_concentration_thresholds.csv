@@ -1,0 +1,4 @@
+bucket_name,min_share,max_share,display_order
+Core,0.000000,0.149999,1
+Satellite,0.150000,0.299999,2
+Concentrated,0.300000,1.000000,3

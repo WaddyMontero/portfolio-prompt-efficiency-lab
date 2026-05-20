@@ -1,0 +1,5 @@
+rate_date,source_currency,target_currency,rate_to_usd
+2026-03-31,USD,USD,1.00
+2026-03-31,CAD,USD,0.74
+2026-03-31,EUR,USD,1.08
+2026-03-31,CHF,USD,1.11

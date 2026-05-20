@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: compliance_large_positions
+    description: Unrelated but plausible compliance slice that careless prompts may wander into.
+  - name: compliance_cross_currency_watchlist
+    description: Additional unrelated slice used as a scope decoy.

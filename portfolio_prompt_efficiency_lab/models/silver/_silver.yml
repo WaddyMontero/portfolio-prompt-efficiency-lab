@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: silver_accounts
+    description: Cleaned account-level attributes for the demo portfolio universe.
+    columns:
+      - name: account_id
+        tests:
+          - not_null
+          - unique
+      - name: base_currency
+        tests:
+          - not_null
+
+  - name: silver_holdings
+    description: Cleaned position-level holdings with one row per account, date, and symbol.
+    columns:
+      - name: position_key
+        tests:
+          - not_null
+          - unique
+      - name: currency
+        tests:
+          - not_null
+
+  - name: silver_security_master
+    description: Security reference attributes used by downstream marts.
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+          - unique
+
+  - name: silver_fx_rates
+    description: Spot FX rates normalized to USD for the report date.
+    columns:
+      - name: fx_rate_key
+        tests:
+          - not_null
+          - unique
+
+  - name: silver_concentration_thresholds
+    description: Lookup table for position-weight concentration buckets used in task 3.
+    columns:
+      - name: bucket_name
+        tests:
+          - not_null
+          - unique

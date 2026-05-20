@@ -1,0 +1,10 @@
+symbol,security_name,asset_class,sector,domicile_country,default_currency
+AAPL,Apple Inc,Equity,Technology,US,USD
+MSFT,Microsoft Corp,Equity,Technology,US,USD
+SHOP,Shopify Inc,Equity,Technology,CA,CAD
+TD,Toronto-Dominion Bank,Equity,Financials,CA,CAD
+ENB,Enbridge Inc,Equity,Energy,CA,CAD
+VTI,Vanguard Total Stock Market ETF,ETF,Multi-Asset,US,USD
+SAP,SAP SE,Equity,Technology,DE,EUR
+NESN,Nestle SA,Equity,Consumer Staples,CH,CHF
+BND,Vanguard Total Bond Market ETF,ETF,Fixed Income,US,USD

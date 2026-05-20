@@ -1,0 +1,39 @@
+name: portfolio_prompt_efficiency_lab
+version: 1.0.0
+config-version: 2
+
+profile: portfolio_prompt_efficiency_lab
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "logs"
+  - "portfolio_prompt_efficiency_lab.duckdb"
+
+models:
+  portfolio_prompt_efficiency_lab:
+    +persist_docs:
+      relation: true
+      columns: true
+    silver:
+      +schema: silver
+      +materialized: view
+    gold:
+      portfolio_reporting:
+        +schema: analytics
+        +materialized: table
+      compliance:
+        +schema: compliance
+        +materialized: view
+      archived:
+        +schema: archive
+        +enabled: false
+
+seeds:
+  portfolio_prompt_efficiency_lab:
+    +schema: raw

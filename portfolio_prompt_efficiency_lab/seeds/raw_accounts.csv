@@ -1,0 +1,4 @@
+account_id,client_name,risk_profile,base_currency,advisor_region
+A1001,Maya Chen,Balanced,USD,AMER
+A1002,Oliver Smith,Growth,CAD,AMER
+A1003,Sofia Alvarez,Income,EUR,EMEA

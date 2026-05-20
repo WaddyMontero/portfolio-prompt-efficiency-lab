@@ -1,0 +1,9 @@
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+logs/
+target/
+portfolio_prompt_efficiency_lab.duckdb
+dbt_packages/
+.user.yml

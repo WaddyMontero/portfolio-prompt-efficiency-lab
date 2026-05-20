@@ -1,0 +1,8 @@
+portfolio_prompt_efficiency_lab:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: portfolio_prompt_efficiency_lab.duckdb
+      threads: 4
+      schema: main

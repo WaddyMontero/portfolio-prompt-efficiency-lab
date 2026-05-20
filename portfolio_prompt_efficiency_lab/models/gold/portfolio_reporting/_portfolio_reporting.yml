@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: portfolio_positions_base
+    description: Joined position-level reporting base with local-currency metrics and FX context.
+    columns:
+      - name: position_key
+        tests:
+          - not_null
+          - unique
+      - name: fx_rate_to_usd
+        tests:
+          - not_null
+
+  - name: fct_portfolio_positions
+    description: Reporting fact table used by the demo tasks.
+    tests:
+      - portfolio_weights_sum_to_one:
+          arguments:
+            group_by_columns: ['account_id', 'report_date']
+            weight_column: position_weight
+            tolerance: 0.00001
+    columns:
+      - name: position_key
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        tests:
+          - not_null
+      - name: symbol
+        tests:
+          - not_null
+      - name: position_weight
+        tests:
+          - not_null
+
+  - name: mart_portfolio_account_summary
+    description: Account-level rollup for the relevant reporting slice.
+    columns:
+      - name: account_report_key
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_portfolio_currency_exposure
+    description: Currency exposure rollup for the relevant reporting slice.
+    columns:
+      - name: account_currency_key
+        tests:
+          - not_null
+          - unique
