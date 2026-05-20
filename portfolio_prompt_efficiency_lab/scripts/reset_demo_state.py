@@ -38,22 +38,41 @@ Use this file to capture reusable impact-analysis notes after a scoped review. E
 
 
 def write_text(path: Path, contents: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(contents, encoding="utf-8")
 
 
 def remove_path(path: Path) -> None:
     if path.is_dir():
-        shutil.rmtree(path)
+        shutil.rmtree(path, ignore_errors=True)
     elif path.exists():
-        path.unlink()
+        path.unlink(missing_ok=True)
 
 
-def main() -> None:
+def restore_baseline_files() -> None:
     write_text(ROOT / "docs" / "repo_map.md", REPO_MAP_TEMPLATE)
     write_text(ROOT / "docs" / "dbt_lineage_notes.md", LINEAGE_TEMPLATE)
 
-    for relative_path in ["target", "logs", "portfolio_prompt_efficiency_lab.duckdb"]:
+    for relative_path in [
+        "AGENTS.md",
+        "docs/portfolio_reporting.md",
+    ]:
         remove_path(ROOT / relative_path)
+
+
+def clean_runtime_artifacts() -> None:
+    for relative_path in [
+        "target",
+        "logs",
+        "dbt_packages",
+        "portfolio_prompt_efficiency_lab.duckdb",
+    ]:
+        remove_path(ROOT / relative_path)
+
+
+def main() -> None:
+    restore_baseline_files()
+    clean_runtime_artifacts()
 
 
 if __name__ == "__main__":

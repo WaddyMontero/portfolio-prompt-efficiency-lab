@@ -1,19 +1,13 @@
 from __future__ import annotations
 
 import os
-import shutil
 import subprocess
 from pathlib import Path
 
+from reset_demo_state import clean_runtime_artifacts, restore_baseline_files
+
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def remove_path(path: Path) -> None:
-    if path.is_dir():
-        shutil.rmtree(path)
-    elif path.exists():
-        path.unlink()
 
 
 def run(command: list[str]) -> None:
@@ -23,8 +17,8 @@ def run(command: list[str]) -> None:
 
 
 def main() -> None:
-    for relative_path in ["target", "logs", "portfolio_prompt_efficiency_lab.duckdb"]:
-        remove_path(ROOT / relative_path)
+    restore_baseline_files()
+    clean_runtime_artifacts()
 
     run(["dbt", "seed"])
     run(["dbt", "build"])
