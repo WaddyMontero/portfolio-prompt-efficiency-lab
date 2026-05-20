@@ -77,11 +77,11 @@ Task 3 should always start from the clean baseline. Do not reuse partially edite
 
 The live showcase is built around the same repo and three tasks:
 
-1. Discovery: create `docs/repo_map.md` without scanning the world.
+1. Discovery: understand how the reporting slice works.
 2. Impact analysis: assess the effect of adding USD-normalized market values to portfolio reporting.
 3. Implementation: add `market_value_usd`, `unrealized_gain_usd`, and `concentration_bucket`, then validate.
 
-The baseline project intentionally does **not** include those task 3 columns yet. The sandbox is meant to start from a clean, working state that the agent can improve during the demo.
+The disciplined run should externalize reusable context as it goes, while the careless run should only receive the business ask. The baseline project intentionally does **not** include those task 3 columns yet. The sandbox is meant to start from a clean, working state that the agent can improve during the demo.
 
 ## Repo shape
 
@@ -91,7 +91,7 @@ models/gold/portfolio_reporting/ relevant reporting slice for the demo
 models/gold/compliance/          unrelated but plausible slice
 models/gold/archived/            intentionally irrelevant decoy
 analyses/                        scratch SQL that should usually be ignored
-docs/                            reusable artifacts for good prompts
+docs/                            reusable artifacts created during disciplined runs
 showcase/                        prompt pairs, facilitator guide, scorecard, reference notes
 scripts/                         bootstrap and reset helpers
 ```

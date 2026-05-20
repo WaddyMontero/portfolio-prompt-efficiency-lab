@@ -6,7 +6,7 @@ Prompt quality is mostly context quality. The disciplined prompt does not make t
 
 ## Three-task flow
 
-1. Discovery: create a reusable repo map for the reporting slice.
+1. Discovery: understand the reporting slice, then create reusable working context.
 2. Impact analysis: assess what USD normalization touches.
 3. Implementation: add USD metrics and concentration buckets, then validate.
 
@@ -23,6 +23,8 @@ Prompt quality is mostly context quality. The disciplined prompt does not make t
 - `AGENTS.md`
 - `docs/repo_map.md`
 - `docs/dbt_lineage_notes.md`
+
+The point is that the disciplined run creates these artifacts on purpose. The careless run should not be told to create them.
 
 ## Prompt habit to repeat
 

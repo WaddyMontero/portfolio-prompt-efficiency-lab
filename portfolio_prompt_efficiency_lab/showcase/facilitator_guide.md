@@ -22,7 +22,7 @@ This is not a benchmark of model intelligence. It is a benchmark of how much unn
 ## If the careless run still looks okay
 
 - Point out the extra files inspected and repeated scans.
-- Show whether it recreated context that already existed in `docs/repo_map.md`.
+- Show whether it recreated context that the disciplined run would have persisted to `AGENTS.md` or `docs/repo_map.md`.
 - Compare the specificity of the implementation plan before any edits happened.
 
 ## If the disciplined run asks for more scope

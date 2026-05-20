@@ -7,7 +7,7 @@ These prompts are written to be tool-agnostic, but they map well to Codex and Cl
 ### Careless prompt
 
 ```text
-Can you review this repo and tell me how the portfolio reporting works? Create any docs you think would help.
+Can you review this repo and tell me how the portfolio reporting works?
 ```
 
 ### Disciplined prompt
@@ -20,7 +20,6 @@ Scope:
 - models/silver/
 - models/gold/portfolio_reporting/
 - README.md
-- AGENTS.md
 
 Ignore:
 - models/gold/compliance/
@@ -29,20 +28,17 @@ Ignore:
 - showcase/
 
 Goal:
-Create a short reusable repository map for the portfolio reporting slice.
+Understand the portfolio reporting slice and leave behind reusable working context for later tasks.
 
 Constraints:
 - Do not inspect ignored paths unless you can justify why.
-- Do not modify any files except docs/repo_map.md.
-- Keep the output under 200 lines.
+- Do not modify any files except docs/repo_map.md and AGENTS.md.
+- Keep each artifact concise and scannable.
 
 Output:
-Write docs/repo_map.md with:
-1. high-level architecture
-2. important folders
-3. build and test commands
-4. data flow
-5. risky areas
+Write:
+1. docs/repo_map.md with high-level architecture, important folders, build/test commands, data flow, and risky areas
+2. AGENTS.md with short repo-specific working notes for future agent sessions
 ```
 
 ## Task 2: Impact Analysis
@@ -50,16 +46,17 @@ Write docs/repo_map.md with:
 ### Careless prompt
 
 ```text
-We need USD-normalized market values in portfolio reporting. Figure out what this impacts and summarize it.
+We need USD-normalized market values in portfolio reporting. What would this affect?
 ```
 
 ### Disciplined prompt
 
 ```text
 Context:
-We want to add USD-normalized market values to the portfolio reporting slice in this dbt sandbox.
+We want to add USD-normalized market values to the portfolio reporting slice in this dbt sandbox. Task 1 should already have produced docs/repo_map.md and AGENTS.md.
 
 Scope:
+- AGENTS.md
 - docs/repo_map.md
 - docs/dbt_lineage_notes.md
 - models/gold/portfolio_reporting/
@@ -75,7 +72,7 @@ Goal:
 Assess the impact of adding USD-normalized market values to portfolio reporting.
 
 Constraints:
-- First reuse docs/repo_map.md if it exists.
+- First reuse AGENTS.md and docs/repo_map.md if they exist.
 - Do not modify models yet.
 - Expand lineage one dependency layer at a time.
 - Only update docs/dbt_lineage_notes.md.
@@ -103,9 +100,10 @@ Please add market_value_usd, unrealized_gain_usd, and concentration_bucket to th
 
 ```text
 Context:
-This repo is a dbt + DuckDB sandbox. We already mapped the repo and captured lineage notes.
+This repo is a dbt + DuckDB sandbox. We already mapped the repo, created AGENTS.md, and captured lineage notes.
 
 Scope:
+- AGENTS.md
 - docs/dbt_lineage_notes.md
 - models/gold/portfolio_reporting/
 - models/silver/silver_concentration_thresholds.sql
@@ -122,6 +120,7 @@ Add market_value_usd, unrealized_gain_usd, and concentration_bucket to the portf
 Constraints:
 - First inspect the current implementation and return a smallest-safe-change plan.
 - Do not edit files outside the allowed scope unless you explain why and ask first.
+- Reuse the existing AGENTS.md and lineage notes instead of rediscovering the repo from scratch.
 - Reuse the existing FX rate field instead of redesigning upstream logic.
 - Validate the result with dbt before finishing.
 
