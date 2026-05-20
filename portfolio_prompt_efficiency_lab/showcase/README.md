@@ -13,4 +13,10 @@ The recommended format is a two-session exercise:
 - [reference_solution.md](reference_solution.md): bounded expectations for the implementation task
 - [live_demo_one_pager.md](live_demo_one_pager.md): compact handout appendix for the workshop
 
-For exported Copilot/Codex JSON logs, use `python scripts/analyze_agent_export.py <export.json> [second_export.json]` from the repo root to extract scorecard-style metrics.
+For exported Copilot/Codex JSON logs, use the analyzer from the facilitator repo root:
+
+```bash
+python3 scripts/analyze_agent_export.py /path/to/first_export.json [/path/to/second_export.json]
+```
+
+It extracts scorecard-style metrics such as request turns, search/read churn, edited files, validation commands, and uncached prompt tokens.

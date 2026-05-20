@@ -31,3 +31,29 @@ This is not a benchmark of model intelligence. It is a benchmark of how much unn
 
 - Reward that if it justifies the need and expands only one layer.
 - The showcase is about bounded reasoning, not about never asking for more context.
+
+## Analyzer script
+
+If you export JSON logs from Copilot or Codex after a rehearsal or live run, you can use the analyzer to pull scorecard-style metrics instead of counting them by hand.
+
+Run it from the facilitator repo root:
+
+```bash
+python3 scripts/analyze_agent_export.py /path/to/first_export.json [/path/to/second_export.json]
+```
+
+What it helps with:
+
+- total request turns
+- total search and read churn
+- unique vs repeated file inspection
+- edited files
+- validation commands
+- prompt tokens, uncached prompt tokens, and total tokens
+- normalized handling of tiny continuation prompts like `proceed`
+
+Recommended use:
+
+- run it once per careless export and once per disciplined export
+- use the combined metrics section in `showcase/scorecard.md` for the final comparison
+- if the live run is too fast or messy to score in real time, use the script right after the session and summarize the results back to the audience
