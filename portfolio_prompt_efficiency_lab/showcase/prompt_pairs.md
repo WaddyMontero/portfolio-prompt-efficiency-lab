@@ -2,6 +2,12 @@
 
 These prompts are written to be tool-agnostic, but they map well to Codex and Claude Code.
 
+Use them as a two-session exercise:
+
+- Session 1 compares discovery and impact analysis.
+- Session 2 compares a follow-up implementation task that starts from a fresh agent session.
+- The disciplined path should carry forward reusable artifacts from session 1. The careless path should mostly rely on rediscovery.
+
 ## Task 1: Discovery
 
 ### Careless prompt
@@ -88,7 +94,17 @@ Return:
 Also save the reusable summary to docs/dbt_lineage_notes.md.
 ```
 
-## Task 3: Implementation
+## Session Reset
+
+After task 2:
+
+1. Keep the repo state produced by the run you are evaluating.
+2. End the agent session or restart the tool so session 2 starts with no chat memory.
+3. Start the follow-up implementation prompt in a fresh session.
+
+This is the point of the exercise: disciplined prompting should leave behind better reusable context for the next session to exploit.
+
+## Task 3: Follow-Up Implementation
 
 ### Careless prompt
 
@@ -100,7 +116,7 @@ Please add market_value_usd, unrealized_gain_usd, and concentration_bucket to th
 
 ```text
 Context:
-This repo is a dbt + DuckDB sandbox. We already mapped the repo, created AGENTS.md, and captured lineage notes.
+This repo is a dbt + DuckDB sandbox. A previous session should already have created AGENTS.md and captured repo/lineage notes.
 
 Scope:
 - AGENTS.md
@@ -120,6 +136,7 @@ Add market_value_usd, unrealized_gain_usd, and concentration_bucket to the portf
 Constraints:
 - First inspect the current implementation and return a smallest-safe-change plan.
 - Do not edit files outside the allowed scope unless you explain why and ask first.
+- Treat this as a new session: use the saved artifacts instead of relying on earlier chat memory.
 - Reuse the existing AGENTS.md and lineage notes instead of rediscovering the repo from scratch.
 - Reuse the existing FX rate field instead of redesigning upstream logic.
 - Validate the result with dbt before finishing.

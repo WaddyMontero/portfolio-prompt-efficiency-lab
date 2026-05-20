@@ -37,7 +37,7 @@ uv run python scripts/bootstrap_demo.py
 
 ## How To Run This Live
 
-Use the same sequence for both runs so the comparison stays fair.
+Use the same two-session sequence for both runs so the comparison stays fair.
 
 1. Bootstrap the clean baseline.
 
@@ -52,36 +52,43 @@ Use the same sequence for both runs so the comparison stays fair.
    - [showcase/scorecard.md](showcase/scorecard.md)
    - [docs/runbooks/demo_reset.md](docs/runbooks/demo_reset.md)
 
-3. Start a fresh agent session and run the three careless prompts from `showcase/prompt_pairs.md`.
-4. Fill in `showcase/scorecard.md` as you go so you capture files inspected, repeated scans, changed files, validation, and risks.
-5. When the careless run is done, reset both the repo and your tool state:
+3. Start a fresh agent session and run the session 1 careless prompts from `showcase/prompt_pairs.md`.
+4. Fill in the session 1 section of `showcase/scorecard.md` as you go so you capture files inspected, repeated scans, changed files, reusable artifacts, and risks.
+5. End the agent session or restart the tool, but keep the repo state produced by that run.
+6. Start a new fresh agent session and run the session 2 careless follow-up prompt from `showcase/prompt_pairs.md`.
+7. Fill in the session 2 section of `showcase/scorecard.md`.
+8. When the careless comparison is done, reset both the repo and your tool state:
 
    ```bash
    uv run python scripts/reset_demo_state.py
    ```
 
-   Then clear or restart your coding agent so the disciplined run does not inherit the earlier context.
+   Then clear or restart your coding agent so the disciplined comparison does not inherit the earlier context.
 
-6. Re-bootstrap the repo if you want a fully rebuilt clean state:
+9. Re-bootstrap the repo if you want a fully rebuilt clean state:
 
    ```bash
    uv run python scripts/bootstrap_demo.py
    ```
 
-7. Start a new fresh agent session and run the disciplined prompts from `showcase/prompt_pairs.md`.
-8. Fill in the second side of `showcase/scorecard.md` and compare the two runs.
+10. Start a fresh agent session and run the session 1 disciplined prompts.
+11. End the agent session or restart the tool, keeping the repo artifacts created during the disciplined run.
+12. Start a new fresh agent session and run the session 2 disciplined follow-up prompt.
+13. Fill in the disciplined side of `showcase/scorecard.md`, including the combined metrics section, and compare the two runs.
 
-Task 3 should always start from the clean baseline. Do not reuse partially edited files from the earlier run if you want a fair comparison.
+The clean baseline matters before each full comparison. Within each comparison, session 2 should inherit files created by session 1 but not chat memory from session 1.
 
 ## Demo storyline
 
-The live showcase is built around the same repo and three tasks:
+The live showcase is built around the same repo and two connected sessions:
 
-1. Discovery: understand how the reporting slice works.
-2. Impact analysis: assess the effect of adding USD-normalized market values to portfolio reporting.
-3. Implementation: add `market_value_usd`, `unrealized_gain_usd`, and `concentration_bucket`, then validate.
+1. Session 1:
+   discovery: understand how the reporting slice works
+   impact analysis: assess the effect of adding USD-normalized market values to portfolio reporting
+2. Session 2:
+   follow-up implementation: add `market_value_usd`, `unrealized_gain_usd`, and `concentration_bucket`, then validate from a fresh agent session
 
-The disciplined run should externalize reusable context as it goes, while the careless run should only receive the business ask. The baseline project intentionally does **not** include those task 3 columns yet. The sandbox is meant to start from a clean, working state that the agent can improve during the demo.
+The disciplined run should externalize reusable context in session 1, while the careless run should mostly rely on rediscovery in session 2. The baseline project intentionally does **not** include those task 2 columns yet. The sandbox is meant to start from a clean, working state that the agent can improve during the demo.
 
 ## Repo shape
 
@@ -98,12 +105,13 @@ scripts/                         bootstrap and reset helpers
 
 ## What "efficient" means here
 
-This repo is designed so you can compare two sessions using visible proxies:
+This repo is designed so you can compare two-session runs using visible proxies:
 
 - how many files the agent inspects
 - how often it repeats repository scans
 - how many turns it needs
 - whether it touches unrelated files
+- whether session 2 reuses artifacts from session 1
 - whether it validates the result before claiming success
 
 See [showcase/scorecard.md](showcase/scorecard.md) and [showcase/prompt_pairs.md](showcase/prompt_pairs.md).
