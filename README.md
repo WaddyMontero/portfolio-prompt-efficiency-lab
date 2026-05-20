@@ -1,18 +1,18 @@
 # Portfolio Prompt Efficiency Lab
 
-This repository hosts the attendee-ready materials for a live workshop on prompt efficiency with AI coding agents.
+This repository now functions as the facilitator-side materials repo for the workshop.
 
-## Start Here
+## Repo Split
 
-- Main sandbox repo: [portfolio_prompt_efficiency_lab](portfolio_prompt_efficiency_lab/)
-- Attendee setup and live-run instructions: [portfolio_prompt_efficiency_lab/README.md](portfolio_prompt_efficiency_lab/README.md)
-- Prompt pack for the exercise: [portfolio_prompt_efficiency_lab/showcase/prompt_pairs.md](portfolio_prompt_efficiency_lab/showcase/prompt_pairs.md)
-- Comparison sheet for the two runs: [portfolio_prompt_efficiency_lab/showcase/scorecard.md](portfolio_prompt_efficiency_lab/showcase/scorecard.md)
+- Facilitator repo: this repository
+- Attendee-safe repo: [WaddyMontero/portfolio-prompt-efficiency-lab-attendee](https://github.com/WaddyMontero/portfolio-prompt-efficiency-lab-attendee)
 
 ## What is included
 
-- A compact `dbt-duckdb` sandbox designed to show the difference between careless and disciplined prompting
-- Reusable workshop materials in `portfolio_prompt_efficiency_lab/showcase/`
-- The final revised workshop deck at `deck_update/outputs/Claude_Code_Efficiency_Workshop_Sandbox.pptx`
+- The workshop deck source materials and revised deck artifact
+- The facilitator prompt pack, scorecard, guide, and reference solution under `portfolio_prompt_efficiency_lab/showcase/`
+- The original sandbox source used to produce the attendee-safe repo
 
-If you are attending the workshop, go directly to [portfolio_prompt_efficiency_lab/README.md](portfolio_prompt_efficiency_lab/README.md).
+## Important
+
+Do not use this repository as the attendee test environment. It intentionally contains facilitator materials that can bias strong agents toward the intended solution path.
